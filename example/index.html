@@ -9,30 +9,34 @@
 </head>
 <body>
 
-<div ng-app="app">
+<div ng-app="app" id="app" ng-controller="DemoController as vm">
     <h3>Text Radio Switch</h3>
 
-    <div id="viewport" ng-controller="DemoController as vm">
 
 
-        <text-radio-switch ng-model="vm.model.type"
+    <div id="viewport">
+        <text-radio-switch class="text-radio-switch__demo"
+                           ng-model="vm.model.type"
                            items="vm.items"
                            key-field="type"
                            name-field="name"></text-radio-switch>
 
-        <h4>Selected: {{vm.model.type}} </h4>
-        <h4><button ng-click="vm.model.type = 'all'">select 'all'</button></h4>
     </div>
+
+    <h4>Selected: {{vm.model.type}} </h4>
+    <h4>
+        <button ng-click="vm.model.type = 'all'">select 'all'</button>
+    </h4>
 </div>
 
 <script>
-    angular.module('app', ['textRadioSwitch']).controller("DemoController", function(){
+    angular.module('app', ['textRadioSwitch']).controller("DemoController", function () {
         this.model = {
             type: '1'
         }
 
         this.items = [
-            {type: 'all', name: 'ALL'},
+            {type: 'all', name: 'All'},
             {type: '1', name: 'YBQ-TKO'},
             {type: '2', name: 'TKO-AKL'},
             {type: '3', name: 'AKL-SFO'},
@@ -44,21 +48,43 @@
 <style>
     @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
 
-    html, body{
+    html, body {
         height: 100%;
     }
 
-    body{
+    body {
         font-family: 'Roboto', sans-serif;
-        background: hsl(200, 10%, 2%);
+        background: hsl(200, 71%, 18%);
         color: rgba(255, 255, 255, .9);
 
         display: flex;
+        flex-direction: column;
         margin: 0;
         overflow-x: hidden;
     }
-    h3, h4{
+
+    h3, h4 {
         font-weight: 300;
+    }
+
+    #app{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    #viewport{
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+    }
+
+    .text-radio-switch__demo{
+
     }
 
 </style>

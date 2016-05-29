@@ -1,17 +1,18 @@
 // text-radio-switch directive
 $trsFontSize: 1em !default;
 $trsLineHeight: 2em !default;
-$trsFontColor: white !default;
+$trsFontColor: inherit !default;
 $trsActiveColor: darken(red, 5%) !default;
 $trsBgColor: transparent !default;
 $trsHlColor: rgba(white, .2) !default;
+$trsItemsGap: .7em !default;
 .text-radio-switch{
   font-size: $trsFontSize;
   line-height: $trsLineHeight;
   color: $trsFontColor;
   background: $trsBgColor;
-  margin: 0 0 1em;
-  padding: 0;
+  margin: 0 0 0 ;
+  padding: 0 0 1em;
   position: relative;
   white-space: nowrap;
   overflow: hidden;
@@ -30,8 +31,12 @@ $trsHlColor: rgba(white, .2) !default;
 
   }
   .text-radio-switch__viewport{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     .text-radio-switch__label{
-      margin-right: .5em;
+      margin-right: $trsItemsGap;
+      user-select: none;
       &:hover{
         cursor: pointer;
       }
@@ -47,13 +52,22 @@ $trsHlColor: rgba(white, .2) !default;
     }
   }
 
-  .text-radio-switch__highlight{
+  .text-radio-switch__highlight-bar{
     background: $trsHlColor;
     position: absolute;
-    top: 1.5em;
-    height: 5px;
+    top: $trsLineHeight;
+    height: .2em;
     left: 0;
-    right: 0;
+    width: 0;
+    span{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      left: 0;
+      background: $trsActiveColor;
+      transition: all .2s;
+    }
 
   }
 

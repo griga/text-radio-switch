@@ -15,6 +15,7 @@ var babel = require('gulp-babel')
 var iife = require('gulp-iife')
 var _ = require('lodash');
 var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
 var connect = require('gulp-connect');
 var gulpIf = require('gulp-if');
 
@@ -22,12 +23,12 @@ var sources = {
     app: {
         main: 'src/text-radio-switch.directive.js',
         src: [
-            'src/**/*.js',
+            'src/text-radio-switch.directive.js',
             // 'src/app/app.js',
             // 'src/app/**/*module.js',
             // 'src/app/**/!(module)*.js'
         ],
-        html: 'src**/*.html',
+        html: 'src/**/*.html',
         out: 'bundle.js',
     },
     sass: {
@@ -92,13 +93,13 @@ gulp.task('watch', function () {
     gulp.watch(sources.sass.src, ['sass-dev']);
     gulp.watch(sources.app.src, ['compile-dev']);
     gulp.watch(sources.app.html, ['compile-dev']);
-    gulp.watch(sources.assets.src, ['assets-dev']);
 });
 
 
 function compileSass(target) {
     return gulp.src(sources.sass.src)
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer())
         .pipe(gulp.dest(destinations[target].css))
         .pipe(connect.reload());
 }

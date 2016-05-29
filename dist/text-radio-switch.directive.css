@@ -1,10 +1,10 @@
 .text-radio-switch {
   font-size: 1em;
   line-height: 2em;
-  color: white;
+  color: inherit;
   background: transparent;
-  margin: 0 0 1em;
-  padding: 0;
+  margin: 0 0 0;
+  padding: 0 0 1em;
   position: relative;
   white-space: nowrap;
   overflow: hidden; }
@@ -17,20 +17,43 @@
     top: 0;
     right: 0;
     opacity: 0; }
-  .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label {
-    margin-right: .5em; }
-    .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label:hover {
-      cursor: pointer; }
-    .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label.text-radio-switch__label_active {
-      color: #e60000; }
-    .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label:last-child {
-      margin-right: 0; }
-    .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label input {
-      display: none; }
-  .text-radio-switch .text-radio-switch__highlight {
+  .text-radio-switch .text-radio-switch__viewport {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap; }
+    .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label {
+      margin-right: 0.7em;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none; }
+      .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label:hover {
+        cursor: pointer; }
+      .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label.text-radio-switch__label_active {
+        color: #e60000; }
+      .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label:last-child {
+        margin-right: 0; }
+      .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label input {
+        display: none; }
+  .text-radio-switch .text-radio-switch__highlight-bar {
     background: rgba(255, 255, 255, 0.2);
     position: absolute;
-    top: 1.5em;
-    height: 5px;
+    top: 2em;
+    height: .2em;
     left: 0;
-    right: 0; }
+    width: 0; }
+    .text-radio-switch .text-radio-switch__highlight-bar span {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      left: 0;
+      background: #e60000;
+      -webkit-transition: all .2s;
+      transition: all .2s; }
