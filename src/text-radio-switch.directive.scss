@@ -1,0 +1,64 @@
+// text-radio-switch directive
+$trsFontSize: 1em !default;
+$trsLineHeight: 2em !default;
+$trsFontColor: white !default;
+$trsActiveColor: darken(red, 5%) !default;
+$trsBgColor: transparent !default;
+$trsHlColor: rgba(white, .2) !default;
+.text-radio-switch{
+  font-size: $trsFontSize;
+  line-height: $trsLineHeight;
+  color: $trsFontColor;
+  background: $trsBgColor;
+  margin: 0 0 1em;
+  padding: 0;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+
+  .text-radio-switch__left{
+    position: absolute;
+    left: 0;
+    opacity: 0;
+  }
+
+  .text-radio-switch__right{
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+
+  }
+  .text-radio-switch__viewport{
+    .text-radio-switch__label{
+      margin-right: .5em;
+      &:hover{
+        cursor: pointer;
+      }
+      &.text-radio-switch__label_active{
+        color: $trsActiveColor;
+      }
+      &:last-child{
+        margin-right: 0;
+      }
+      input{
+        display: none;
+      }
+    }
+  }
+
+  .text-radio-switch__highlight{
+    background: $trsHlColor;
+    position: absolute;
+    top: 1.5em;
+    height: 5px;
+    left: 0;
+    right: 0;
+
+  }
+
+}
+
+
+
+

@@ -1,0 +1,36 @@
+.text-radio-switch {
+  font-size: 1em;
+  line-height: 2em;
+  color: white;
+  background: transparent;
+  margin: 0 0 1em;
+  padding: 0;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden; }
+  .text-radio-switch .text-radio-switch__left {
+    position: absolute;
+    left: 0;
+    opacity: 0; }
+  .text-radio-switch .text-radio-switch__right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0; }
+  .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label {
+    margin-right: .5em; }
+    .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label:hover {
+      cursor: pointer; }
+    .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label.text-radio-switch__label_active {
+      color: #e60000; }
+    .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label:last-child {
+      margin-right: 0; }
+    .text-radio-switch .text-radio-switch__viewport .text-radio-switch__label input {
+      display: none; }
+  .text-radio-switch .text-radio-switch__highlight {
+    background: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 1.5em;
+    height: 5px;
+    left: 0;
+    right: 0; }

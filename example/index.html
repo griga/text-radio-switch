@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Radio Switch Angular Usage Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+    <script src="../dist/text-radio-switch.directive.js"></script>
+    <link rel="stylesheet" href="../dist/text-radio-switch.directive.css">
+</head>
+<body>
+
+<div ng-app="app">
+    <h3>Text Radio Switch</h3>
+
+    <div id="viewport" ng-controller="DemoController as vm">
+
+
+        <text-radio-switch ng-model="vm.model.type"
+                           items="vm.items"
+                           key-field="type"
+                           name-field="name"></text-radio-switch>
+
+        <h4>Selected: {{vm.model.type}} </h4>
+        <h4><button ng-click="vm.model.type = 'all'">select 'all'</button></h4>
+    </div>
+</div>
+
+<script>
+    angular.module('app', ['textRadioSwitch']).controller("DemoController", function(){
+        this.model = {
+            type: '1'
+        }
+
+        this.items = [
+            {type: 'all', name: 'ALL'},
+            {type: '1', name: 'YBQ-TKO'},
+            {type: '2', name: 'TKO-AKL'},
+            {type: '3', name: 'AKL-SFO'},
+            {type: '4', name: 'SFO-GIG'},
+        ]
+    })
+</script>
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
+    html, body{
+        height: 100%;
+    }
+
+    body{
+        font-family: 'Roboto', sans-serif;
+        background: hsl(200, 10%, 2%);
+        color: rgba(255, 255, 255, .9);
+
+        display: flex;
+        margin: 0;
+        overflow-x: hidden;
+    }
+    h3, h4{
+        font-weight: 300;
+    }
+
+</style>
+</body>
+</html>
