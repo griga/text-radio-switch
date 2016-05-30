@@ -1,12 +1,12 @@
 # text-radio-switch angular directive
 
-Simple directive that extends radio button
+Simple directive that extends radio button functionality.
 Check out [demo](http://griga.github.io/text-radio-switch/)
 
 
 ### Usage
 
-1. include script and style file to your build
+1. Include script and style file to your build
 
 2. Then add `textRadioSwitch` module as your app dependency
     ```js
@@ -37,10 +37,10 @@ Check out [demo](http://griga.github.io/text-radio-switch/)
 
 ### SCSS customization
 
-if you use SCSS for managing styles in your project, then you can customize directive
- look by overriding following variables before you include `dist/text-radio-switch.directive.scss`
+If you are using SCSS for managing styles in your project, then you can customize directive
+ look by overriding following variables (before you include `dist/text-radio-switch.directive.scss`)
 
-next SCSS customizations are available
+Next SCSS customizations are available (defaults are shown)
 
 ```scss
     $trs-font-size: 1em !default;
