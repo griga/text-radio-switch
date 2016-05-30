@@ -4,7 +4,7 @@
 
 
 angular.module('textRadioSwitch', [])
-    .directive('onFinishRender', function ($timeout) {
+    .directive('trsOnFinishRender', function ($timeout) {
         return {
             restrict: 'A',
             link: function (scope, element, attr) {
@@ -16,8 +16,8 @@ angular.module('textRadioSwitch', [])
             }
         }
     })
-    .directive('textRadioSwitch', function ($window) {
-        let widgetsCounter = 0
+    .directive('textRadioSwitch', function () {
+        let widgetsCounter = 0;
         return {
             restrict: 'E',
             replace: true,
@@ -25,7 +25,7 @@ angular.module('textRadioSwitch', [])
             template: `
 <div class="text-radio-switch" id="{{::trsWidgetName}}">
   <div class="text-radio-switch__viewport">
-    <label ng-repeat="item in ::trsItems" on-finish-render="::ngRepeatFinished" class="text-radio-switch__label" 
+    <label ng-repeat="item in ::trsItems" trs-on-finish-render="::ngRepeatFinished" class="text-radio-switch__label" 
     ng-class="{'text-radio-switch__label_active': item[trsKeyField]==trsItemSelected}" for="{{::(trsWidgetName + '__' + item[trsKeyField])}}"><input 
     ng-click="trsSelect(item)" type="radio" value="item[trsKeyField]" 
     id="{{::(trsWidgetName + '__' + item[trsKeyField])}}"
@@ -42,9 +42,8 @@ angular.module('textRadioSwitch', [])
                 trsNameField: '@nameField'
             },
             link: function (scope, element, attributes, ngModelCtrl) {
-                var w = angular.element($window);
-                widgetsCounter++
-                scope.trsWidgetName = 'text-radio-switch-widget-' + widgetsCounter
+                widgetsCounter++;
+                scope.trsWidgetName = 'text-radio-switch-widget-' + widgetsCounter;
                 scope.trsItemSelected = ngModelCtrl.$modelValue;
 
 
@@ -54,9 +53,8 @@ angular.module('textRadioSwitch', [])
                 };
 
                 function doHighlight() {
-                    let label = document.querySelector('label[for="' + scope.trsWidgetName + '__' + scope.trsItemSelected + '"]')
-
-                    let span = document.querySelector('#' + scope.trsWidgetName + ' span')
+                    let label = document.querySelector('label[for="' + scope.trsWidgetName + '__' + scope.trsItemSelected + '"]');
+                    let span = document.querySelector('#' + scope.trsWidgetName + ' span');
                     if (!label || !span) return;
 
                     angular.element(span).css({
@@ -67,18 +65,15 @@ angular.module('textRadioSwitch', [])
                 }
                 
                 function updateHighlightBarWidth(){
-                    let labels = document.querySelectorAll('#' + scope.trsWidgetName + ' label')
-                    let width = 0
+                    let labels = document.querySelectorAll('#' + scope.trsWidgetName + ' label');
+                    let width = 0;
                     Array.prototype.forEach.call(labels, (l)=>{
-                        width += l.offsetWidth
-                        console.log(l.style)
-
+                        width += l.offsetWidth;
                         let style = window.getComputedStyle(l);
-
                         width += parseInt(style.marginLeft, 10) + parseInt(style.marginRight, 10);
                         width += parseInt(style.paddingLeft, 10) + parseInt(style.paddingRight, 10);
 
-                    })
+                    });
 
                     let bar = document.querySelector('#' + scope.trsWidgetName + ' .text-radio-switch__highlight-bar')
                     angular.element(bar).css({
@@ -86,22 +81,18 @@ angular.module('textRadioSwitch', [])
                     })
                 }
 
-
                 scope.$on('trsRepeatFinish', ()=> {
                     setTimeout(()=> {
-                        doHighlight()
+                        doHighlight();
                         updateHighlightBarWidth()
-
                     }, 50)
                 });
 
                 scope.trsSelect = function (item) {
-                    ngModelCtrl.$setViewValue(item[scope.trsKeyField])
+                    ngModelCtrl.$setViewValue(item[scope.trsKeyField]);
                     scope.trsItemSelected = ngModelCtrl.$viewValue;
                     doHighlight()
                 }
-                   
-
             }
         }
-    })
+    });

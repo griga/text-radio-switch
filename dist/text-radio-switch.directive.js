@@ -5,7 +5,7 @@
  * Created by griga on 5/29/16.
  */
 
-angular.module('textRadioSwitch', []).directive('onFinishRender', function ($timeout) {
+angular.module('textRadioSwitch', []).directive('trsOnFinishRender', function ($timeout) {
     return {
         restrict: 'A',
         link: function link(scope, element, attr) {
@@ -16,20 +16,19 @@ angular.module('textRadioSwitch', []).directive('onFinishRender', function ($tim
             }
         }
     };
-}).directive('textRadioSwitch', function ($window) {
+}).directive('textRadioSwitch', function () {
     var widgetsCounter = 0;
     return {
         restrict: 'E',
         replace: true,
         require: 'ngModel',
-        template: '\n<div class="text-radio-switch" id="{{::trsWidgetName}}">\n  <div class="text-radio-switch__viewport">\n    <label ng-repeat="item in ::trsItems" on-finish-render="::ngRepeatFinished" class="text-radio-switch__label" \n    ng-class="{\'text-radio-switch__label_active\': item[trsKeyField]==trsItemSelected}" for="{{::(trsWidgetName + \'__\' + item[trsKeyField])}}"><input \n    ng-click="trsSelect(item)" type="radio" value="item[trsKeyField]" \n    id="{{::(trsWidgetName + \'__\' + item[trsKeyField])}}"\n    ng-checked="{{item[trsKeyField]==trsItemSelected}}" name="{{::trsWidgetName}}" />{{::item[trsNameField]}}</label>\n  </div>\n  <div class="text-radio-switch__left">&lt;</div>\n  <div class="text-radio-switch__right">&gt;</div>\n  <div class="text-radio-switch__highlight-bar"><span></span></div>\n</div>\n',
+        template: '\n<div class="text-radio-switch" id="{{::trsWidgetName}}">\n  <div class="text-radio-switch__viewport">\n    <label ng-repeat="item in ::trsItems" trs-on-finish-render="::ngRepeatFinished" class="text-radio-switch__label" \n    ng-class="{\'text-radio-switch__label_active\': item[trsKeyField]==trsItemSelected}" for="{{::(trsWidgetName + \'__\' + item[trsKeyField])}}"><input \n    ng-click="trsSelect(item)" type="radio" value="item[trsKeyField]" \n    id="{{::(trsWidgetName + \'__\' + item[trsKeyField])}}"\n    ng-checked="{{item[trsKeyField]==trsItemSelected}}" name="{{::trsWidgetName}}" />{{::item[trsNameField]}}</label>\n  </div>\n  <div class="text-radio-switch__left">&lt;</div>\n  <div class="text-radio-switch__right">&gt;</div>\n  <div class="text-radio-switch__highlight-bar"><span></span></div>\n</div>\n',
         scope: {
             trsItems: '=items',
             trsKeyField: '@keyField',
             trsNameField: '@nameField'
         },
         link: function link(scope, element, attributes, ngModelCtrl) {
-            var w = angular.element($window);
             widgetsCounter++;
             scope.trsWidgetName = 'text-radio-switch-widget-' + widgetsCounter;
             scope.trsItemSelected = ngModelCtrl.$modelValue;
@@ -41,7 +40,6 @@ angular.module('textRadioSwitch', []).directive('onFinishRender', function ($tim
 
             function doHighlight() {
                 var label = document.querySelector('label[for="' + scope.trsWidgetName + '__' + scope.trsItemSelected + '"]');
-
                 var span = document.querySelector('#' + scope.trsWidgetName + ' span');
                 if (!label || !span) return;
 
@@ -56,10 +54,7 @@ angular.module('textRadioSwitch', []).directive('onFinishRender', function ($tim
                 var width = 0;
                 Array.prototype.forEach.call(labels, function (l) {
                     width += l.offsetWidth;
-                    console.log(l.style);
-
                     var style = window.getComputedStyle(l);
-
                     width += parseInt(style.marginLeft, 10) + parseInt(style.marginRight, 10);
                     width += parseInt(style.paddingLeft, 10) + parseInt(style.paddingRight, 10);
                 });

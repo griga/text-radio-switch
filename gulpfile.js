@@ -107,6 +107,11 @@ function compileSass(target) {
 gulp.task('sass-dev', compileSass.bind(this, 'dev'));
 gulp.task('sass-prod', compileSass.bind(this, 'prod'));
 
+gulp.task('sass-copy', function(){
+    gulp.src(sources.sass.main)
+        .pipe(gulp.dest(destinations.prod.root))
+})
+
 
 gulp.task('connect', function () {
     return connect.server({
@@ -117,7 +122,7 @@ gulp.task('connect', function () {
 })
 
 
-gulp.task('prod', ['sass-prod', 'compile-prod']);
+gulp.task('prod', ['sass-prod', 'compile-prod', 'sass-copy']);
 gulp.task('dev', ['connect', 'sass-dev', 'compile-dev', 'watch']);
 gulp.task('default', ['dev']);
 
