@@ -4,6 +4,8 @@ Simple directive that extends radio button functionality.
 
 Check out [demo](http://griga.github.io/text-radio-switch/)
 
+<iframe src="http://griga.github.io/text-radio-switch/"></iframe>
+
 
 ### Usage
 
